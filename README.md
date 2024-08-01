@@ -130,7 +130,6 @@ admin@cv3998423:~$ psql
 CREATE DATABASE cloud_project;
 \q
 ```
-____________________________________________________________
 19. Клонируем проект с github:
 ```
 git clone https://github.com/ihaveseeni486/fpy_diplom_cloud_back.git
