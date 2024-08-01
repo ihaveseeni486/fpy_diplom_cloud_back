@@ -12,7 +12,7 @@ env/
 venv/
 ENV/
 env.bak/
-env.bak
+.env.bak
 venv.bak/
 *.egg
 *.egg-info/
@@ -65,6 +65,7 @@ env/
 venv/
 ENV/
 env.bak/
+.env.bak
 venv.bak/
 storage/
 static/
