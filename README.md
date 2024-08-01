@@ -145,8 +145,8 @@ python3 -m venv env
 ```
 22. Активируем виртуальные окружение:
 ```
---source env/bin/activate (не сработало у меня)
-source env/scripts/activate
+source env/bin/activate (на серверной)
+source env/scripts/activate (у себя локально)
 ```
 23. Устанавливаем все зависимости из проекта:
 ```
@@ -183,6 +183,7 @@ python manage.py collectstatic
 ```
 29. Выходим из виртуального окружения и устанавливаем nginx и запускаем:
 ```
+deactivate
 sudo apt install nginx
 sudo systemctl start nginx
 ```
@@ -195,7 +196,7 @@ sudo nano /etc/nginx/sites-available/project
 ```angular2html
 server {
     listen 80;
-    server_name 89.111.175.58;
+    server_name 194.58.126.189;
 
     location / {
         root /home/admin/fpy_diplom_cloud_back/static/react/dist/;
@@ -258,9 +259,10 @@ http {
 ```
 sudo ln -s /etc/nginx/sites-available/project /etc/nginx/sites-enabled/
 ```
-33. Устанавливаем wsgi сервер для взаимодействия веб-сервера и python приложением. Будем устанавливать блиотеку gunicorn.
-Активируем виртуальное окружение и устанавливаем 
+33. Устанавливаем wsgi сервер для взаимодействия веб-сервера и python приложением. Будем устанавливать 
+библиотеку gunicorn. Активируем виртуальное окружение и устанавливаем 
 ```
+source env/bin/activate
 pip install gunicorn
 ```
 34. Указываем как подключать gunicorn: 
@@ -271,6 +273,7 @@ gunicorn app.wsgi --bind 0.0.0.0:8000
 
 35. Настраиваем, чтобы gunicorn был всегда запущен. Выходим из виртуального окружения и открываем конфигурационный файл:
 ```
+ctrl+c
 sudo nano /etc/systemd/system/gunicorn.service
 ```
 Содержимое файла:
