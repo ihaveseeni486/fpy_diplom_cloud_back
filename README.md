@@ -302,7 +302,8 @@ sudo systemctl restart nginx
 ```
 Если при запуске сервера будет ошибка 500 и в логах ```sudo tail -n 50 /var/log/nginx/error.log```
 сообщение Permission denied необходимо предоставить 
-доступ nginx к Permission 
+доступ nginx к Permission:
+Или также может быть ошибка 502 bad gateway, она решается также:
 ```/home/admin/fpy_diplom_cloud_back/static/react/dist/:```
 ```angular2html
 sudo chmod 755 /home/admin
