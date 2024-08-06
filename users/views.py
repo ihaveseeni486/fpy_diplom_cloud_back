@@ -52,7 +52,8 @@ class ChangeUser(generics.UpdateAPIView):
 
         old_username = instance.username  # Сохраняем старое имя пользователя
 
-        if User.objects.filter(username=request.data['username']).exists():
+        # если изменился у пользака логин, то нужно проверить его уникальность
+        if old_username != request.data['username'] and User.objects.filter(username=request.data['username']).exists():
             logger.warning(f"Пользователь с таким именем уже существует")
             return Response({'message': 'Пользователь с таким именем уже существует.', 'status': 400},
                             status=status.HTTP_400_BAD_REQUEST)
