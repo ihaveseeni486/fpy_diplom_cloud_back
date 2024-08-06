@@ -300,6 +300,19 @@ sudo systemctl enable gunicorn
 ```angular2html
 sudo systemctl restart nginx
 ```
+
+38. Запускаем сервер, если через терминал:
+```
+source env/bin/activate
+python manage.py runserver 0.0.0.0:8000
+```
+
+39. Остановить сервер через терминал:
+```
+pkill -f runserver или ctrl+c
+deactivate
+```
+
 Если при запуске сервера будет ошибка 500 и в логах ```sudo tail -n 50 /var/log/nginx/error.log```
 сообщение Permission denied необходимо предоставить 
 доступ nginx к Permission:
@@ -311,7 +324,12 @@ sudo chown -R admin:www-data /home/admin/fpy_diplom_cloud_back
 sudo systemctl restart nginx
 sudo systemctl restart gunicorn
 ```
-
+-------------------------------------------
+### Если нужно точечно обновить бэк:
+```
+scp C:/views.py admin@194.58.126.189:/home/admin/fpy_diplom_cloud_back/users/views.py
+И рестартануть сервер в самом reg.ru
+```
 -------------------------------------------
 ### deploy react приложения
 
@@ -329,7 +347,13 @@ scp -r C:/react admin@194.58.126.189:/home/admin/fpy_diplom_cloud_back/static/
 ```
 Проверить, удачно ли все скопировалось:
 ```
+cd fpy_diplom_cloud_back
 cd static
 cd react
 ls -l
+```
+Если нужно почистить папку assets:
+```
+sudo rm -r admin@194.58.126.189:/home/admin/fpy_diplom_cloud_back/static/react/dist/assets
+sudo rm -r ./fpy_diplom_cloud_back/static/react/dist/assets
 ```
